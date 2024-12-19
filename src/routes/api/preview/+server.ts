@@ -14,12 +14,12 @@ export const GET: RequestHandler = async ({ url, cookies, setHeaders }) => {
 
 	// Check the secret.
 	if (secret !== incomingSecret) {
-		throw error(401, 'Invalid secret');
+		error(401, 'Invalid secret');
 	}
 
 	// Check if we have a type and slug parameter.
 	if(!slug || !type) {
-		throw error(401, 'Missing slug or type');
+		error(401, 'Missing slug or type');
 	}
 
 	// Default redirect.
@@ -33,7 +33,7 @@ export const GET: RequestHandler = async ({ url, cookies, setHeaders }) => {
 		});
 
 		if (!post || !post.slug) {
-			throw error(401, 'No post found');
+			error(401, 'No post found');
 		}
 
 		isPreviewing = true;
@@ -55,5 +55,5 @@ export const GET: RequestHandler = async ({ url, cookies, setHeaders }) => {
 	});
 
 	// We don't redirect to url.searchParams.get("slug") as that exposes us to open redirect vulnerabilities,
-	throw redirect(302, redirectSlug);
+	redirect(302, redirectSlug);
 };

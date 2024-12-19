@@ -2,9 +2,13 @@
   import { urlForImage } from "$lib/config/sanity";
   import type { PageData } from "./$types";
 
-  export let data: PageData;
+  interface Props {
+    data: PageData;
+  }
 
-  $: ({ posts } = data);
+  let { data }: Props = $props();
+
+  let { posts } = $derived(data);
 </script>
 
 <svelte:head>

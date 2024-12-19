@@ -1,9 +1,13 @@
 <script lang="ts">
   import { sanityUser } from "$lib/config/sanity";
 
-  export let embedded = false;
+  interface Props {
+    embedded?: boolean;
+  }
 
-  $: ({ data } = sanityUser());
+  let { embedded = false }: Props = $props();
+
+  let { data } = $derived(sanityUser());
 </script>
 
 {#if !embedded}

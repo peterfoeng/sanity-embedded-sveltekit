@@ -15,7 +15,7 @@ export const load: PageServerLoad = async ({ parent, params }) => {
 	});
 
 	if (!post) {
-		throw error(404, 'Post not found');
+		error(404, 'Post not found');
 	}
 
 	return {

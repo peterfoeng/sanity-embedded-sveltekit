@@ -4,10 +4,14 @@
   import { urlForImage } from "$lib/config/sanity";
   import type { PageData } from "./$types";
 
-  export let data: PageData;
+  interface Props {
+    data: PageData;
+  }
 
-  $: ({ initialData, previewMode, slug } = data);
-  $: ({ data: postData } = previewSubscription(postQuery, {
+  let { data }: Props = $props();
+
+  let { initialData, previewMode, slug } = $derived(data);
+  let { data: postData } = $derived(previewSubscription(postQuery, {
     params: { slug },
     initialData,
     enabled: previewMode && !!slug,

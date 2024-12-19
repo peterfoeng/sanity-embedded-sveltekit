@@ -8,7 +8,7 @@ export const load: PageServerLoad = async ({ parent, params }) => {
 	const posts = await getSanityServerClient(false).fetch(allPostsQuery);
 
 	if (!posts) {
-		throw error(500, 'Posts not found');
+		error(500, 'Posts not found');
 	}
 
 	return {
